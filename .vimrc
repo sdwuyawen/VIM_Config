@@ -3,6 +3,7 @@ set backspace=indent,eol,start	"设置backspace键，否则无法删除
 syntax on         "自动语法高亮(对于编程语言中的关键字高亮需要下载相应的编程语言对应的"配色方案.vim文件"，参见4.C++语言关键字配色 )
 set number        "显示行号
 colorscheme  3dglasses  "设定配色方案为cpp.vim
+""colorscheme  BusyBee  "设定配色方案为cpp.vim
 "set cursorline " 突出显示当前行
 "set ruler " 打开状态栏标尺
 set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
@@ -13,6 +14,9 @@ set nobackup " 覆盖文件时不备份
 " 启动自动补全
 filetype plugin on
 
+filetype on
+"支持鼠标
+set mouse=a
 
 """"""""" Settings of taglist""""""""""""""
 " increase the width of the taglist window
