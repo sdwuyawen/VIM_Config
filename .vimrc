@@ -61,11 +61,11 @@ let g:miniBufExplUseSingleClick=1
 set tags+=~/.vim/cpptags
 set tags+=~/.vim/systags
 "add by wu, add /usr/include里的tags,用sudo ctags -R --fields=+lS生成的
-set tags+=~/.vim/tags/usr_include_tags
+set tags+=/usr/include/usr_include_tags
 "add by wu,for cpp library functions
 set tags+=~/.vim/tags/cpp
 "add by wu,for linux kernel 
-set tags+=~/.vim/tags/linux2.6.22
+set tags+=~/workspace/kernel/linux-2.6.22.with_yaffs20070816/ctags_linux2.6.22
 
 """""""""""color scheme""""""""""""""""""""
 let g:molokai_original=1
