@@ -89,7 +89,10 @@ Bundle 'vim-scripts/AutoClose'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
 "add by wu, for auto complete
-Bundle 'vim-scripts/OmniCppComplete'	
+Bundle 'vim-scripts/OmniCppComplete'
+"add by wu, for achofunc
+Bundle 'vim-scripts/echofunc.vim'	
+
 
 """"""""""syntastic""""""""""""
 let g:syntastic_check_on_open = 1
