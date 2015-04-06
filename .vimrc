@@ -60,6 +60,12 @@ let g:miniBufExplUseSingleClick=1
 """"""""""""ctags settings"""""""""""""""""
 set tags+=~/.vim/cpptags
 set tags+=~/.vim/systags
+"add by wu, add /usr/include里的tags,用sudo ctags -R --fields=+lS生成的
+set tags+=~/.vim/tags/usr_include_tags
+"add by wu,for cpp library functions
+set tags+=~/.vim/tags/cpp
+"add by wu,for linux kernel 
+set tags+=~/.vim/tags/linux2.6.22
 
 """""""""""color scheme""""""""""""""""""""
 let g:molokai_original=1
@@ -124,6 +130,13 @@ let g:syntastic_enable_balloons = 1
 
 """""""""""""设置开启ctags"""""""""""""   
 map <F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+
+"""""""""""""设置echofunc"""""""""""""   
+"let g:EchoFuncKeyNext='<C-=>' 
+"let g:EchoFuncKeyPrev='<C-->'
+"在终端下Alt-X等同于Esc X
+let g:EchoFuncKeyNext='<Esc>+'
+let g:EchoFuncKeyPrev='<Esc>-'
 
 "显示行号    
 "set number "或者set  nu
