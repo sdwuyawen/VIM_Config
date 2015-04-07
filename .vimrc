@@ -63,9 +63,9 @@ set tags+=~/.vim/systags
 "add by wu, add /usr/include里的tags,用sudo ctags -R --fields=+lS生成的
 set tags+=/usr/include/usr_include_tags
 "add by wu,for cpp library functions
-set tags+=~/.vim/tags/cpp
+set tags+=/home/wu/.vim/tags/cpp
 "add by wu,for linux kernel 
-set tags+=~/workspace/kernel/linux-2.6.22.with_yaffs20070816/ctags_linux2.6.22
+set tags+=/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/ctags_linux2.6.22
 
 """""""""""color scheme""""""""""""""""""""
 let g:molokai_original=1
@@ -102,14 +102,14 @@ Bundle 'vim-scripts/echofunc.vim'
 
 """"""""""syntastic""""""""""""
 let g:syntastic_check_on_open = 1
-"let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
 let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 "set error or warning signs
-let g:syntastic_error_symbol = '!!'
-let g:syntastic_warning_symbol = '->'
+let g:syntastic_error_symbol = '!'
+let g:syntastic_warning_symbol = '>'
 "whether to show balloons
 let g:syntastic_enable_balloons = 1
 
@@ -117,8 +117,12 @@ let g:syntastic_enable_balloons = 1
 "Syntastic C checker 
 "let g:loaded_syntastic_c_gcc_checker = 1 
 let g:syntastic_c_checkers = ['gcc', 'make']
-let g:syntastic_c_include_dirs = ['home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/include', '/usr/include']
+let g:syntastic_c_include_dirs = ['/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/include', '/usr/include']
 "let g:syntastic_c_config_file = [''] 
+"let g:syntastic_c_remove_include_errors = 1
+"let g:syntastic_c_compiler = 'gcc'
+"let g:syntastic_c_compiler_options = '-I/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/include'
+
 
 """"""""""""YCM""""""""""""""""""""
 "let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
