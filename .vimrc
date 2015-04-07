@@ -49,10 +49,10 @@ let Tlist_Enable_Fold_Column=1
 let Tlist_Auto_Update=1
 
 """"""""""""""taglist设置"""""""""""""""""           
-map <F3> : Tlist<CR>  ""按下F3就可以呼出了  
+map <F4> : Tlist<CR>  ""按下F4就可以呼出了  
 let Tlist_Auto_Open = 1  "在启动VIM后，自动打开taglist窗口  
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'  "设定ctags的位置  
-let Tlist_Use_Right_Window=0 " 1为让窗口显示在右边，0为显示在左边  
+let Tlist_Use_Right_Window=1 " 1为让窗口显示在右边，0为显示在左边  
 let Tlist_Show_One_File=0
 "让taglist可以同时展示多个文件的函数列表，设置为1时不同时显示>多个文件的tag，只显示当前文件的  
 let Tlist_File_Fold_Auto_Close=1 "同时显示多个文件中的tag时，taglist只显示当前文件tag，>其他文件的函数列表折叠隐藏  
@@ -63,7 +63,10 @@ let Tlist_WinWidth=30
 
 
 """""""""" NERDtree settings"""""""""""""""
-let NERDTreeWinPos='right'
+let NERDTreeWinPos='left'
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+
 """""""""" mini buffer navigator"""""""""""
 let g:miniBUfExplMapWindowNavVim=1
 let g:miniBufExplMapWindowNavArrows=1
@@ -154,7 +157,8 @@ let g:syntastic_c_include_dirs = ['/home/wu/workspace/kernel/linux-2.6.22.with_y
 "set completeopt=longest,menu
 
 """""""""""""设置开启ctags"""""""""""""   
-map <F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+
 
 """""""""""""设置echofunc"""""""""""""   
 "let g:EchoFuncKeyNext='<C-=>' 
