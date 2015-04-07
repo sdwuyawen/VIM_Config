@@ -40,7 +40,7 @@ let Tlist_Auto_Open=0
 " exit wim when only the taglist window exist
 let Tlist_Exit_OnlyWindow=1
 " open tags with single click
-let Tlist_Use_SingleClick=1
+"let Tlist_Use_SingleClick=1
 " close tag folds for inactive buffers
 let Tlist_File_Fold_Auto_Close=1
 " show the fold indicator column in the taglist window 
