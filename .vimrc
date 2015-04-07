@@ -18,6 +18,20 @@ filetype on
 "支持鼠标
 set mouse=a
 
+"设置文本编码支持
+" ******** file encode ********
+"unix or dos file
+set fileformats=unix,dos
+"euc-cn is alias to gb2312
+"set vi inside coding, must be set when you use gbk or utf-8
+set encoding=utf-8
+"actual file encoding, will set as it except fileencodings load other
+"set fileencoding=gb2312
+set fileencodings=utf-bom,utf-8,gbk,gb2312,gb18030,cp936,latin1
+"terminal encoding
+"even if you set utf-8 in ssh client
+set termencoding=utf-8"
+
 """"""""" Settings of taglist""""""""""""""
 " increase the width of the taglist window
 let Tlist_WinWidth=10
