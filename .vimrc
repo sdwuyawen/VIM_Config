@@ -16,6 +16,7 @@ set number        "显示行号
 
 " 启动自动补全
 filetype plugin on
+filetype plugin indent on
 
 filetype on
 "支持鼠标
@@ -179,10 +180,10 @@ let g:syntastic_c_include_dirs = ['/home/wu/workspace/kernel/linux-2.6.22.with_y
 
 
 """"""""""""OmniCppComplete""""""""""""""""""""
-"let OmniCpp_MayCompleteDot = 1   " autocomplete with .
-"let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
+let OmniCpp_MayCompleteDot = 1   " autocomplete with .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
 " 自动补全配置让Vim补全菜单行为跟IDE一致
-"set completeopt=longest,menu
+set completeopt=longest,menu
 
 """""""""""""设置开启ctags"""""""""""""   
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
