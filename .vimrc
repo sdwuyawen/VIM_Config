@@ -112,6 +112,11 @@ set tags+=/usr/include/usr_include_tags
 set tags+=/home/wu/.vim/tags/cpp
 "add by wu,for linux kernel 
 set tags+=/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/ctags_linux2.6.22
+"add by wu, for OmniComplete, ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+"--c++-kinds=+p  : 为C++文件增加函数原型的标签
+"--fields=+iaS   : 在标签文件中加入继承信息(i)、类成员的访问控制信息(a)、以及函数的指纹(S)
+"--extra=+q      : "为标签增加类修饰符。注意，如果没有此选项，将不能对类成员补全
+set tags+=/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/tags
 
 """""""""""color scheme""""""""""""""""""""
 let g:molokai_original=1
