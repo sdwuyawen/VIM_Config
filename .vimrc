@@ -12,6 +12,7 @@ let g:solarized_termcolors=256
 
 "colorscheme darkburn
 colorscheme  3dglasses  
+"colorscheme 1111 
 "colorscheme fine_blue  
 "colorscheme wombat  
 "colorscheme corporation  
