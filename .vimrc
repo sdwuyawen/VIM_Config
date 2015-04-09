@@ -4,19 +4,7 @@ set backspace=indent,eol,start	"设置backspace键，否则无法删除
 syntax enable
 syntax on         "自动语法高亮(对于编程语言中的关键字高亮需要下载相应的编程语言对应的"配色方案.vim文件"，参见4.C++语言关键字配色 )
 
-"vim开启256色支持
-set t_Co=256
-set background=dark
-"colorscheme solarized
-let g:solarized_termcolors=256
 
-"colorscheme darkburn
-colorscheme  3dglasses  
-"colorscheme 1111 
-"colorscheme fine_blue  
-"colorscheme wombat  
-"colorscheme corporation  
-"colorscheme  BusyBee  
 "set cursorline " 突出显示当前行
 "set ruler " 打开状态栏标尺
 set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
@@ -32,6 +20,31 @@ filetype plugin on
 filetype on
 "支持鼠标
 set mouse=a
+
+"允许用shift+#高亮标记单词
+set hlsearch
+
+"vim开启256色支持
+set t_Co=256
+"set background=dark
+"colorscheme solarized
+"let g:solarized_termcolors=256
+
+colorscheme diy1
+"colorscheme ccc1
+"colorscheme wombat256mod1 
+"colorscheme darkburn
+"colorscheme  3dglasses  
+"colorscheme 1111 
+"colorscheme fine_blue  
+"colorscheme wombat  
+"colorscheme corporation  
+"colorscheme  BusyBee  
+
+"手动给C函数体着色
+map <F10> <Esc>:colorscheme diy1<CR>
+map <F11> <Esc>:colorscheme ccc1<CR>
+
 
 "设置文本编码支持
 " ******** file encode ********
@@ -198,3 +211,4 @@ inoremap <expr> <C-J>	   pumvisible()?"\<PageDown>\<C-N>\<C-P>":"\<C-X><C-O>"
 inoremap <expr> <C-K>      pumvisible()?"\<PageUp>\<C-P>\<C-N>":"\<C-K>"
 "如果下拉菜单弹出，CTRL-U映射为CTRL-E，即停止补全，否则，仍映射为CTRL-U；
 inoremap <expr> <C-U>      pumvisible()?"\<C-E>":"\<C-U>" 
+
