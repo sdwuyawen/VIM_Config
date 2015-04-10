@@ -194,7 +194,7 @@ set completeopt=longest,menu
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 
 
-"-- Cscope setting --"
+"""""""""""""""""设置Cscope"""""""""""""""""""""""""""""
 if has("cscope")
     set csprg=/usr/bin/cscope        " 指定用来执行cscope的命令
     set csto=0                        " 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库
@@ -209,10 +209,11 @@ if has("cscope")
 	"cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out		" 添加kernel的cscope
     set csverb
 endif
-map <F8> <ESC>:cs reset<CR>
-map <F7> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
-imap <F7> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
-map <F6> <Esc>:cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out<CR>		" 添加kernel的cscope
+
+map <F7> <Esc>:cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out<CR>		" 添加kernel的cscope
+map <F8> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+imap <F8> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+map <F9> <ESC>:cs reset<CR>
 
 " 将:cs find c等Cscope查找命令映射为<C-_>c等快捷键（按法是先按Ctrl+Shift+-, 然后很快再按下c）
 nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR> :copen<CR><CR>
@@ -224,6 +225,9 @@ nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR> :copen<CR><CR>
 nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR> :copen<CR><CR>
 
+"""""""""""""""""设置quickfix"""""""""""""""""""""""""""""
+map <F5> <ESC>:copen<CR>		"打开quickfix
+map <F6> <ESC>:cclose<CR>		"关闭quickfix
 
 """""""""""""设置echofunc"""""""""""""   
 "let g:EchoFuncKeyNext='<C-=>' 
@@ -234,9 +238,9 @@ let g:EchoFuncKeyPrev='<Esc>-'
 
 "显示行号    
 "set number "或者set  nu
-"imap <F5> <Esc>:set nu<CR>   "映射F5显示行号，参考"vim 按键映射"（http://www.pythonclub.org/vim/map-basic）
-"imap <C-F5> <Esc>:set nonu<CR>   "映射Ctrl+F5为不显示行号
-map <F5> <Esc>:set nu!<CR>   "映射F5显示行号，参考"vim 按键映射"（http://www.pythonclub.org/vim/map-basic）
+"imap <F2> <Esc>:set nu<CR>   "映射F2显示行号，参考"vim 按键映射"（http://www.pythonclub.org/vim/map-basic）
+"imap <C-F2> <Esc>:set nonu<CR>   "映射Ctrl+F2为不显示行号
+map <F2> <Esc>:set nu!<CR>   "映射F2显示行号，参考"vim 按键映射"（http://www.pythonclub.org/vim/map-basic）
 
 "imap a b
 " mapping
