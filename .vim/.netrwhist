@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/wu/.vim'
+let g:netrw_dirhist_2='/home/wu/.vim/bundle/syntastic/syntax_checkers/c'
+let g:netrw_dirhist_3='/home/wu/workspace/kernel'
+let g:netrw_dirhist_4='/home/wu/.vim/bundle/nerdtree/autoload/nerdtree'
+let g:netrw_dirhist_5='/home/wu/workspace'
+let g:netrw_dirhist_6='/home/wu/.vim/bundle/c.vim'
+let g:netrw_dirhist_7='/home/wu/.vim/colors/CSApprox/doc'
