@@ -206,10 +206,14 @@ if has("cscope")
     elseif $CSCOPE_DB != ""            " 否则只要环境变量CSCOPE_DB不为空，则添加其指定的数据库到vim
         cs add $CSCOPE_DB
     endif
+	"cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out		" 添加kernel的cscope
     set csverb
 endif
-map <F9> :cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
-imap <F9> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+map <F8> <ESC>:cs reset<CR>
+map <F7> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+imap <F7> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+map <F6> <Esc>:cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out<CR>		" 添加kernel的cscope
+
 " 将:cs find c等Cscope查找命令映射为<C-_>c等快捷键（按法是先按Ctrl+Shift+-, 然后很快再按下c）
 nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR> :copen<CR><CR>
 nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
