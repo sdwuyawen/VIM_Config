@@ -1,3 +1,7 @@
+if has("autocmd")
+	  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 set nocompatible  "关闭vi兼容模式，可以启用方向键和Backspace
 set backspace=indent,eol,start	"设置backspace键，否则无法删除
 
