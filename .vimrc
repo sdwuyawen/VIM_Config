@@ -101,11 +101,11 @@ map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
 
 """""""""" mini buffer navigator"""""""""""
-let g:miniBUfExplMapWindowNavVim=1
-let g:miniBufExplMapWindowNavArrows=1
-let g:miniBufExplMapCTabSwitchBufs=1
-let g:miniBufExplModSelTarget=1 
-let g:miniBufExplUseSingleClick=1
+"let g:miniBUfExplMapWindowNavVim=1
+"let g:miniBufExplMapWindowNavArrows=1
+"let g:miniBufExplMapCTabSwitchBufs=1
+"let g:miniBufExplModSelTarget=1 
+"let g:miniBufExplUseSingleClick=1
 
 """"""""""""ctags settings"""""""""""""""""
 set tags+=~/.vim/cpptags
@@ -115,7 +115,7 @@ set tags+=/usr/include/usr_include_tags
 "add by wu,for cpp library functions
 set tags+=/home/wu/.vim/tags/cpp
 "add by wu,for linux kernel 
-set tags+=/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/ctags_linux2.6.22
+"set tags+=/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/ctags_linux2.6.22
 "add by wu, for OmniComplete, ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
 "--c++-kinds=+p  : 为C++文件增加函数原型的标签
 "--fields=+iaS   : 在标签文件中加入继承信息(i)、类成员的访问控制信息(a)、以及函数的指纹(S)
@@ -138,7 +138,7 @@ Bundle 'gmarik/vundle'
 """"""""vim scripts""""""""""""""""""
 Bundle 'taglist.vim'
 Bundle 'c.vim'
-Bundle 'minibufexpl.vim'
+"Bundle 'minibufexpl.vim'
 Bundle 'grep.vim'
 Bundle 'mru.vim'
 Bundle 'comments.vim'
@@ -153,6 +153,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'vim-scripts/OmniCppComplete'
 "add by wu, for achofunc
 Bundle 'vim-scripts/echofunc.vim'	
+Bundle 'wesleyche/SrcExpl'
 
 
 """"""""""syntastic""""""""""""
@@ -203,7 +204,7 @@ if has("cscope")
     set csprg=/usr/bin/cscope        " 指定用来执行cscope的命令
     set csto=0                        " 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库
     set cst                            " 同时搜索cscope数据库和标签文件
-    set cscopequickfix=s-,c-,d-,i-,t-,e-    " 使用QuickFix窗口来显示cscope查找结果
+"    set cscopequickfix=s-,c-,d-,i-,t-,e-    " 使用QuickFix窗口来显示cscope查找结果
     set nocsverb
     if filereadable("cscope.out")    " 若当前目录下存在cscope数据库，添加该数据库到vim
         cs add cscope.out
@@ -214,10 +215,10 @@ if has("cscope")
     set csverb
 endif
 
-map <F7> <Esc>:cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out<CR>		" 添加kernel的cscope
-map <F8> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
-imap <F8> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
-map <F9> <ESC>:cs reset<CR>
+"map <F7> <Esc>:cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out<CR>		" 添加kernel的cscope
+"map <F8> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+"imap <F8> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+"map <F9> <ESC>:cs reset<CR>
 
 " 将:cs find c等Cscope查找命令映射为<C-_>c等快捷键（按法是先按Ctrl+Shift+-, 然后很快再按下c）
 nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR> :copen<CR><CR>
@@ -257,3 +258,42 @@ inoremap <expr> <C-K>      pumvisible()?"\<PageUp>\<C-P>\<C-N>":"\<C-K>"
 "如果下拉菜单弹出，CTRL-U映射为CTRL-E，即停止补全，否则，仍映射为CTRL-U；
 inoremap <expr> <C-U>      pumvisible()?"\<C-E>":"\<C-U>" 
 
+
+" // The switch of the Source Explorer 
+nmap <F8> :SrcExplToggle<CR> 
+
+" // Set the height of Source Explorer window 
+let g:SrcExpl_winHeight = 8 
+
+" // Set 100 ms for refreshing the Source Explorer 
+let g:SrcExpl_refreshTime = 100 
+
+" // Set "Enter" key to jump into the exact definition context 
+" let g:SrcExpl_jumpKey = "<ENTER>" 
+
+" // Set "Space" key for back from the definition context 
+let g:SrcExpl_gobackKey = "<SPACE>" 
+
+" // In order to Avoid conflicts, the Source Explorer should know what plugins 
+" // are using buffers. And you need add their bufname into the list below 
+" // according to the command ":buffers!" 
+let g:SrcExpl_pluginList = [ 
+        \ "__Tag_List__", 
+        \ "_NERD_tree_", 
+        \ "Source_Explorer" 
+    \ ] 
+
+" // Enable/Disable the local definition searching, and note that this is not 
+" // guaranteed to work, the Source Explorer doesn't check the syntax for now. 
+" // It only searches for a match with the keyword according to command 'gd' 
+let g:SrcExpl_searchLocalDef = 1 
+
+" // Do not let the Source Explorer update the tags file when opening 
+let g:SrcExpl_isUpdateTags = 0 
+
+" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to 
+" //  create/update a tags file 
+let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
+
+" // Set "<F12>" key for updating the tags file artificially 
+let g:SrcExpl_updateTagsKey = "<F12>" 
