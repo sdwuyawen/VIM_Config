@@ -101,11 +101,11 @@ map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
 
 """""""""" mini buffer navigator"""""""""""
-"let g:miniBUfExplMapWindowNavVim=1
-"let g:miniBufExplMapWindowNavArrows=1
-"let g:miniBufExplMapCTabSwitchBufs=1
-"let g:miniBufExplModSelTarget=1 
-"let g:miniBufExplUseSingleClick=1
+let g:miniBUfExplMapWindowNavVim=1
+let g:miniBufExplMapWindowNavArrows=1
+let g:miniBufExplMapCTabSwitchBufs=1
+let g:miniBufExplModSelTarget=1 
+let g:miniBufExplUseSingleClick=1
 
 """"""""""""ctags settings"""""""""""""""""
 set tags+=~/.vim/cpptags
@@ -138,7 +138,7 @@ Bundle 'gmarik/vundle'
 """"""""vim scripts""""""""""""""""""
 Bundle 'taglist.vim'
 Bundle 'c.vim'
-"Bundle 'minibufexpl.vim'
+Bundle 'minibufexpl.vim'
 Bundle 'grep.vim'
 Bundle 'mru.vim'
 Bundle 'comments.vim'
