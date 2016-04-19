@@ -58,6 +58,7 @@ Bundle 'comments.vim'
 """"""""git repo"""""""""""""""
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'vim-scripts/OmniCppComplete'
 
 
 "设置配色方案
@@ -137,4 +138,12 @@ let g:syntastic_c_include_dirs = ['/usr/include']
 "let g:syntastic_c_remove_include_errors = 1
 let g:syntastic_c_compiler = 'gcc'
 "let g:syntastic_c_compiler_options = '-I/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/include'
+let g:syntastic_enable_signs=1
+
+
+""""""""""""OmniCppComplete""""""""""""""""""""
+let OmniCpp_MayCompleteDot = 1   " autocomplete with .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
+" 自动补全配置让Vim补全菜单行为跟IDE一致
+set completeopt=longest,menu
 
