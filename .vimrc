@@ -74,8 +74,25 @@ colorscheme molokai
 "映射F2显示行号
 map <F2> <Esc>:set nu!<CR>
 
-"""""""""""""设置开启ctags"""""""""""""
+"""""""""""""设置快捷键重新加载ctags"""""""""""""
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+
+"""""""""""""设置cscope""""""""""""""""
+if has("cscope")
+    set csprg=/usr/bin/cscope        	" 指定用来执行cscope的命令
+    set csto=0                        	" 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库
+    set cst                            	" 同时搜索cscope数据库和标签文件
+"    set cscopequickfix=s-,c-,d-,i-,t-,e-    " 使用QuickFix窗口来显示cscope查找结果
+    set nocsverb
+    if filereadable("cscope.out")    	" 若当前目录下存在cscope数据库，添加该数据库到vim
+        cs add cscope.out
+    elseif $CSCOPE_DB != ""            	" 否则只要环境变量CSCOPE_DB不为空，则添加其指定的数据库到vim
+        cs add $CSCOPE_DB
+    endif
+    "cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out        " 添加kernel的cscope
+    set csverb
+endif
+
 
 """""""""" mini buffer navigator"""""""""""
 let g:miniBUfExplMapWindowNavVim=1
@@ -107,7 +124,7 @@ let Tlist_Enable_Fold_Column=1
 let Tlist_Auto_Update=1
 
 
-"""""""""""" syntastic配置part1 """"""""""""
+"""""""""""" syntastic语法检查配置part1 """"""""""""
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_error_symbol = '✗'
 "let g:syntastic_warning_symbol = '⚠'
@@ -122,7 +139,7 @@ let g:syntastic_enable_highlighting = 0
 "let g:syntastic_cpp_compiler = 'clang++'
 "let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 
-"""""""""""" syntastic配置part2 """"""""""""
+"""""""""""" syntastic语法检查配置part2 """"""""""""
 let g:syntastic_check_on_open = 1
 "set error or warning signs
 let g:syntastic_error_symbol = '!'
@@ -139,19 +156,19 @@ let g:syntastic_c_compiler = 'gcc'
 "let g:syntastic_enable_signs=1
 
 
-""""""""""""OmniCppComplete""""""""""""""""""""
+""""""""""""OmniCppComplete自动补全""""""""""""""""""""
 let OmniCpp_MayCompleteDot = 1   " autocomplete with .
 let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
 " 自动补全配置让Vim补全菜单行为跟IDE一致
 set completeopt=longest,menu
 
-"""""""""""""设置echofunc，显示函数原型"""""""""""""
+"""""""""""""echofunc显示函数原型"""""""""""""
 "let g:EchoFuncKeyNext='<C-=>'
 "let g:EchoFuncKeyPrev='<C-->'
 "let g:EchoFuncKeyNext='<Esc>+'
 "let g:EchoFuncKeyPrev='<Esc>-'
-let g:EchoFuncKeyPrev='<C-b>'
-let g:EchoFuncKeyNext='<C-n>'
+let g:EchoFuncKeyPrev='<C-b>'	"Ctrl和b，跳转到上一个函数原型
+let g:EchoFuncKeyNext='<C-n>'	"Ctrl和n，跳转到下一个函数原型
 
 
 
