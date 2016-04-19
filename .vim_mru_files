@@ -1,4 +1,11 @@
 # Most recently edited files in Vim (version 3.0)
+/home/wu/.vimrc
+/home/wu/workspace/drivers/test/test5/main.c
+/home/wu/.vim/bundle/syntastic/syntax_checkers/c/gcc.vim
+/home/wu/workspace/drivers/test/test5/1.cpp
+/home/wu/workspace/drivers/test/test5/uart.h
+/home/wu/workspace/drivers/test/test5/uart.c
+/home/wu/workspace/drivers/test/test5/lcd.c
 /home/wu/Downloads/sudoers
 /etc/environment
 /etc/lightdm/lightdm.conf
@@ -92,10 +99,3 @@
 /home/wu/workspace/kernel/linux/include/linux/workqueue.h
 /home/wu/workspace/nfs_share/priority/test2.c
 /home/wu/workspace/nfs_share/priority/test1.c
-/home/wu/workspace/nfs_share/priority/priority_test.c
-/home/wu/workspace/nfs_share/priority/Makefile
-/home/wu/workspace/kernel/linux/kernel/sched/core.c
-/home/wu/workspace/kernel/linux/include/linux/sched.h
-/etc/ppp/pptpd-options
-/var/log/wtmp
-/etc/pptpd.conf

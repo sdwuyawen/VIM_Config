@@ -8,7 +8,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/\V\<header\>
+~Msle0~/\<hlsearch\>
 
 # Last Substitute Search Pattern:
 ~MSle0&zh
@@ -19,10 +19,14 @@ $en
 # Command Line History (newest to oldest):
 :q
 :w
+:set paste
+:qa
+:set nu!
+:W
+:Q
 :bundle
 :vundle install
 :bundle install
-:qa
 :wq
 :%s/zh/en/gc
 :q!
@@ -33,12 +37,10 @@ $en
 :cs find g spi_transfer
 :make
 :/
-:/a
-:/
-:she;;
-:set paste
 
 # Search String History (newest to oldest):
+? \<hlsearch\>
+? \<256\>
 ? zh
 ?/zh
 ? \<kill_process\>
@@ -57,8 +59,6 @@ $en
 ? \<argv\>
 ? \<count\>
 ? \<parsed_length\>
-? \<size\>
-? \<0x100002\>
 
 # Expression History (newest to oldest):
 
@@ -70,61 +70,138 @@ $en
 # Registers:
 "0	LINE	0
 	"colorscheme blue
-"1	LINE	0
+""1	LINE	0
+	"打开文件时，回到上次退出时的文件位置
+	if has("autocmd")
+	      au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	endif
 	
-"2	LINE	0
+	set nocompatible  "关闭vi兼容模式，可以启用方向键和Backspace
+	set backspace=indent,eol,start	"设置backspace键，否则无法删除
 	
-"3	LINE	0
+	syntax enable
+	"syntax on         "自动语法高亮(对于编程语言中的关键字高亮需要下载相应的编程语言对应的"配色方案.vim文件")
 	
+	"set cursorline " 突出显示当前行
+	"set ruler " 打开状态栏标尺
+	set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
+	set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
+	set tabstop=4 " 设定 tab 长度为 4
+	set nobackup " 覆盖文件时不备份
+	set number        "显示行号
+	
+	" 启动自动补全
+	filetype plugin on
+	filetype plugin indent on
+	filetype on
+	"支持鼠标
+	set mouse=a
+	
+	"允许用shift+#高亮标记单词
+	set hlsearch
+	
+	"vim开启256色支持
+	set t_Co=256
+	
+	"设置文本编码支持
+	"unix or dos file
+	set fileformats=unix,dos
+	"set vi inside coding, must be set when you use gbk or utf-8
+	set encoding=utf-8
+	set fileencodings=utf-bom,utf-8,gbk,gb2312,gb18030,cp936,latin1
+	"terminal encoding
+	"even if you set utf-8 in ssh client
+	set termencoding=utf-8
+	
+	""""""""""""vundle"""""""""""""""""""""""""
+	set rtp+=~/.vim/bundle/vundle/
+	call vundle#rc()
+	   
+	" let Vundle manage Vundle
+	" required! 
+	Bundle 'gmarik/vundle'
+	""""""""vim scripts""""""""""""""""""
+"2	CHAR	0
+	"add by wu
+	"Syntastic C checker
+	"let g:loaded_syntastic_c_gcc_checker = 1
+	let g:syntastic_c_checkers = ['gcc', 'make']
+	let g:syntastic_c_include_dirs = ['/usr/include']
+	"let g:syntastic_c_config_file = ['']
+	"let g:syntastic_c_remove_include_errors = 1
+	"let g:syntastic_c_compiler = 'gcc'
+	"let g:syntastic_c_compiler_options = '-I/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/include'
+"3	BLOCK	0
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
+	"
 "4	LINE	0
 	
 "5	LINE	0
-	"set runtimepath+=~/.vim
-"6	LINE	0
-	set runtimepath+=~/.vim
-"7	CHAR	0
-	"colorscheme blue
-	Bundle 'desert-warm-256'
-	colorscheme desert-warm
-"8	CHAR	0
-	"colorscheme blue
-	Bundle 'desert-warm-256'
-	colorscheme desert-warm
+	
+"6	CHAR	0
+	""""""""""syntastic""""""""""""
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_cpp_include_dirs = ['/usr/include/']
+	let g:syntastic_cpp_remove_include_errors = 1
+	let g:syntastic_cpp_check_header = 1
+	let g:syntastic_cpp_compiler = 'clang++'
+	let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+	"set error or warning signs
+	let g:syntastic_error_symbol = 'x'
+	let g:syntastic_warning_symbol = '!'
+	"whether to show balloons
+	let g:syntastic_enable_balloons = 1
+"7	LINE	0
+	58.
+"8	LINE	0
+	59.
 "9	LINE	0
-	colorscheme diy1
-""-	CHAR	0
+	60.
+"-	CHAR	0
 	"
 
 # File marks:
-'0  180  0  ~/workspace/drivers/test/test5/main.c
-'1  13  0  ~/.vimrc
-'2  37  0  ~/.vimrc
-'3  47  36  ~/workspace/u-boot/u-boot/net/dns.c
-'4  33  0  ~/.vimrc
-'5  24  0  ~/.vimrc
-'6  150  0  ~/Downloads/install.sh
-'7  20  4  ~/Downloads/sudoers
-'8  13  0  /etc/environment
-'9  1  0  /etc/environment
+'0  109  0  ~/.vimrc
+'1  1  0  ~/.vimrc
+'2  1  0  ~/.vimrc
+'3  1  0  ~/.vimrc
+'4  1  0  ~/.vimrc
+'5  47  36  ~/workspace/u-boot/u-boot/net/dns.c
+'6  1  0  ~/.vimrc
+'7  1  0  ~/.vimrc
+'8  150  0  ~/Downloads/install.sh
+'9  20  4  ~/Downloads/sudoers
 
 # Jumplist (newest first):
--'  180  0  ~/workspace/drivers/test/test5/main.c
--'  1  0  ~/workspace/drivers/test/test5/main.c
--'  13  0  ~/.vimrc
--'  65  15  ~/.vimrc
--'  28  0  ~/.vimrc
--'  29  23  ~/.vimrc
--'  31  0  ~/.vimrc
+-'  109  0  ~/.vimrc
+-'  19  4  ~/__Tag_List__
+-'  2  0  ~/__Tag_List__
 -'  1  0  ~/.vimrc
--'  37  0  ~/.vimrc
 -'  47  36  ~/workspace/u-boot/u-boot/net/dns.c
 -'  61  16  ~/workspace/u-boot/u-boot/net/dns.c
 -'  1  0  ~/workspace/u-boot/u-boot/net/dns.c
--'  33  0  ~/.vimrc
--'  25  0  ~/.vimrc
--'  26  0  ~/.vimrc
--'  43  3  ~/.vimrc
--'  24  0  ~/.vimrc
 -'  150  0  ~/Downloads/install.sh
 -'  1  0  ~/Downloads/install.sh
 -'  20  4  ~/Downloads/sudoers
@@ -201,72 +278,246 @@ $en
 -'  7  0  ~/ti-processor-sdk-linux-am335x-evm-01.00.00.03/__Tag_List__
 -'  150  0  ~/Downloads/install.sh
 -'  1  0  ~/Downloads/install.sh
--'  20  4  ~/Downloads/sudoers
--'  1  0  ~/Downloads/sudoers
--'  13  0  /etc/environment
--'  3  10  /etc/environment
--'  1  0  /etc/environment
--'  5  0  /etc/lightdm/lightdm.conf
 
 # History of marks within files (newest to oldest):
 
-> ~/workspace/drivers/test/test5/main.c
-	"	180	0
-	.	14	0
-	+	14	0
-
 > ~/.vimrc
-	"	13	0
-	^	65	16
-	.	17	0
-	+	43	0
-	+	43	0
-	+	43	0
-	+	43	0
-	+	43	0
-	+	26	0
-	+	25	0
-	+	5	0
-	+	17	0
-	+	18	0
-	+	19	0
-	+	24	0
-	+	31	0
-	+	30	0
-	+	31	0
-	+	30	6
-	+	28	0
-	+	4	22
-	+	28	0
-	+	28	15
-	+	28	22
-	+	28	0
-	+	28	0
-	+	28	0
-	+	60	24
-	+	61	0
-	+	64	26
-	+	65	18
-	+	64	0
-	+	4	0
-	+	65	0
-	+	63	0
-	+	65	0
-	+	28	0
+	"	109	0
+	.	1	0
+	+	1	0
+	+	1	24
+	+	1	0
+	+	1	26
+	+	1	18
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	19
+	+	1	0
+	+	1	0
+	+	1	21
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	5
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	46
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	21
+	+	1	21
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	16
+	+	1	28
+	+	1	28
+	+	1	21
+	+	1	24
+	+	1	23
+	+	1	1
+	+	1	1
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	35
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	69
+	+	1	0
+	+	1	107
+	+	1	0
+	+	1	0
+	+	1	34
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	32
+	+	1	34
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	107
+	+	1	0
+	+	1	116
+	+	1	0
+	+	1	48
+	+	1	0
+	+	1	0
+
+> ~/__Tag_List__
+	"	19	4
+	.	32	0
+	+	149	0
+	+	140	0
+	+	131	0
+	+	122	0
+	+	113	0
+	+	104	0
+	+	95	0
+	+	86	0
+	+	77	0
+	+	68	0
+	+	59	0
+	+	50	0
+	+	41	0
 	+	32	0
-	+	24	0
-	+	19	0
+
+> ~/workspace/drivers/test/test5/main.c
+	"	37	1
+	^	18	27
+	.	18	0
+	+	14	0
+	+	130	0
+	+	38	0
+	+	31	0
+	+	32	5
+	+	33	13
+	+	35	10
 	+	18	0
-	+	17	0
 
-> /usr/share/vim/vim73/syntax/c.vim
-	"	358	0
-	.	358	0
-	+	357	48
-	+	358	0
+> ~/workspace/drivers/test/test5/__Tag_List__
+	"	6	4
+	.	8	0
+	+	1192	0
+	+	1164	0
+	+	1185	0
+	+	1157	0
+	+	1150	0
+	+	1143	0
+	+	1136	0
+	+	1129	0
+	+	1122	0
+	+	1115	0
+	+	1108	0
+	+	1018	0
+	+	1101	0
+	+	1011	0
+	+	921	0
+	+	810	0
+	+	831	0
+	+	782	0
+	+	803	0
+	+	775	0
+	+	768	0
+	+	761	0
+	+	754	0
+	+	726	0
+	+	747	0
+	+	698	0
+	+	719	0
+	+	587	0
+	+	670	0
+	+	691	0
+	+	476	0
+	+	559	0
+	+	580	0
+	+	469	0
+	+	462	0
+	+	434	0
+	+	455	0
+	+	427	0
+	+	399	0
+	+	392	0
+	+	385	0
+	+	357	0
+	+	378	0
+	+	329	0
+	+	350	0
+	+	301	0
+	+	322	0
+	+	190	0
+	+	273	0
+	+	294	0
+	+	184	0
+	+	184	0
+	+	184	0
+	+	184	0
+	+	184	0
+	+	184	0
+	+	183	0
+	+	176	0
+	+	169	0
+	+	162	0
+	+	155	0
+	+	149	0
+	+	149	0
+	+	149	0
+	+	149	0
+	+	148	0
+	+	141	0
+	+	134	0
+	+	127	0
+	+	120	0
+	+	113	0
+	+	107	0
+	+	107	0
+	+	106	0
+	+	99	0
+	+	92	0
+	+	85	0
+	+	78	0
+	+	71	0
+	+	64	0
+	+	57	0
+	+	50	0
+	+	43	0
+	+	36	0
+	+	29	0
+	+	22	0
+	+	15	0
+	+	8	0
 
-> ~/workspace/drivers/test/test5/lcd.c
-	"	197	0
+> ~/workspace/drivers/test/test5/1.cpp
+	"	22	10
+	^	22	11
+	.	22	10
+	+	6	22
+	+	21	1
+	+	22	10
+
+> ~/workspace/drivers/test/test5/uart.h
+	"	1	5
 
 > ~/workspace/drivers/test/test5/-MiniBufExplorer-
 	"	1	0
@@ -287,6 +538,129 @@ $en
 	+	2	0
 	+	2	0
 	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+	+	2	0
+
+> ~/workspace/drivers/test/test5/uart.c
+	"	51	0
+
+> ~/workspace/drivers/test/test5/lcd.c
+	"	147	0
+
+> ~/workspace/drivers/test/test5/NERD_tree_1
+	"	24	9
+	.	1	0
+	+	1	0
+	+	1	0
+
+> /usr/share/vim/vim73/doc/help.txt
+	"	87	0
+
+> /usr/share/vim/vim73/doc/cmdline.txt
+	"	1	0
+
+> /usr/share/vim/vim73/doc/map.txt
+	"	4	4
+
+> ~/workspace/drivers/test/test5/1.c
+	"	6	19
+	^	6	20
+	.	6	0
+	+	6	0
+
+> ~/.git/COMMIT_EDITMSG
+	"	78	71
+	^	78	74
+	.	78	71
+	+	78	71
+
+> /usr/share/vim/vim73/syntax/c.vim
+	"	358	0
+	.	358	0
+	+	357	48
+	+	358	0
 
 > ~/.vim/colors/molokai.vim
 	"	29	0
@@ -337,23 +711,6 @@ $en
 	"	14	18
 	.	1	0
 	+	1	0
-
-> ~/__Tag_List__
-	"	6	4
-	.	10	0
-	+	118	0
-	+	109	0
-	+	100	0
-	+	91	0
-	+	82	0
-	+	73	0
-	+	64	0
-	+	55	0
-	+	46	0
-	+	37	0
-	+	28	0
-	+	19	0
-	+	10	0
 
 > ~/.vim/changes.txt
 	"	1	0
@@ -1303,72 +1660,3 @@ $en
 	+	34	1
 	+	35	1
 	+	36	1
-
-> ~/workspace/drivers/spi/10th_flash_spigpio_can_mkdosfs/Makefile
-	"	1	0
-	^	1	22
-	.	1	21
-	+	1	23
-	+	9	64
-	+	1	21
-
-> ~/workspace/kernel/linux/drivers/spi/Makefile
-	"	10	0
-	^	10	55
-	.	10	54
-	+	10	54
-
-> ~/workspace/kernel/linux/drivers/video/fbtft/flexfb.c
-	"	565	28
-
-> ~/workspace/kernel/linux/include/linux/kern_levels.h
-	"	25	5
-
-> ~/workspace/kernel/linux/arch/arm/mach-omap2/board-omap3beagle.c
-	"	371	5
-
-> ~/workspace/kernel/linux/drivers/gpio/gpiolib.c
-	"	1300	0
-
-> ~/workspace/kernel/linux/Makefile
-	"	40	0
-
-> ~/workspace/drivers/spi/10th_flash_spigpio_can_mkdosfs/spi_flash_drv.c
-	"	316	9
-	^	306	11
-	.	306	11
-	+	9	1
-	+	10	1
-	+	19	1
-	+	306	11
-
-> ~/workspace/drivers/spi/tst-spi.c
-	"	77	0
-	^	38	34
-	.	38	33
-	+	1	4
-	+	132	0
-	+	87	27
-	+	99	55
-	+	106	54
-	+	109	48
-	+	117	48
-	+	127	44
-	+	102	36
-	+	35	11
-	+	36	12
-	+	87	23
-	+	40	11
-	+	37	4
-	+	38	33
-
-> ~/workspace/drivers/spi/__Tag_List__
-	"	19	4
-	.	26	0
-	+	119	0
-	+	113	0
-	+	107	0
-	+	101	0
-	+	76	0
-	+	51	0
-	+	26	0
