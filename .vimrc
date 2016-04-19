@@ -59,6 +59,7 @@ Bundle 'comments.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/OmniCppComplete'
+Bundle 'vim-scripts/echofunc.vim'
 
 
 "设置配色方案
@@ -100,7 +101,7 @@ let Tlist_Enable_Fold_Column=1
 let Tlist_Auto_Update=1
 
 
-"" syntastic
+"""""""""""" syntastic配置part1 """"""""""""
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_error_symbol = '✗'
 "let g:syntastic_warning_symbol = '⚠'
@@ -115,15 +116,13 @@ let g:syntastic_enable_highlighting = 0
 "let g:syntastic_cpp_compiler = 'clang++'
 "let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 
-
-""""""""""syntastic""""""""""""
+"""""""""""" syntastic配置part2 """"""""""""
 let g:syntastic_check_on_open = 1
 "set error or warning signs
 let g:syntastic_error_symbol = '!'
 let g:syntastic_warning_symbol = '>'
-let g:syntastic_enable_balloons = 1
+"let g:syntastic_enable_balloons = 1
 
-"Syntastic C checker
 "let g:loaded_syntastic_c_gcc_checker = 1
 let g:syntastic_c_checkers = ['gcc', 'make']
 let g:syntastic_c_include_dirs = ['/usr/include']
@@ -139,4 +138,14 @@ let OmniCpp_MayCompleteDot = 1   " autocomplete with .
 let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
 " 自动补全配置让Vim补全菜单行为跟IDE一致
 set completeopt=longest,menu
+
+"""""""""""""设置echofunc，显示函数原型"""""""""""""
+"let g:EchoFuncKeyNext='<C-=>'
+"let g:EchoFuncKeyPrev='<C-->'
+"let g:EchoFuncKeyNext='<Esc>+'
+"let g:EchoFuncKeyPrev='<Esc>-'
+let g:EchoFuncKeyPrev='<C-b>'
+let g:EchoFuncKeyNext='<C-n>'
+
+
 
