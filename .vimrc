@@ -1,7 +1,8 @@
 set nocompatible  "关闭vi兼容模式，可以启用方向键和Backspace
 set backspace=indent,eol,start	"设置backspace键，否则无法删除
 
-"syntax enable
+
+syntax enable
 "syntax on         "自动语法高亮(对于编程语言中的关键字高亮需要下载相应的编程语言对应的"配色方案.vim文件")
 
 "set cursorline " 突出显示当前行
@@ -25,12 +26,9 @@ set hlsearch
 "vim开启256色支持
 set t_Co=256
 
-colorscheme diy1
-
 "手动给C函数体着色
-map <F10> <Esc>:colorscheme diy1<CR>
+map <F8> <Esc>:colorscheme diy1<CR>
 "map <F11> <Esc>:colorscheme ccc1<CR>
-
 
 "设置文本编码支持
 "unix or dos file
@@ -61,3 +59,7 @@ call vundle#rc()
 """"""""vim scripts""""""""""""""""""
 Bundle 'minibufexpl.vim'
 
+"colorscheme blue
+"Bundle 'desert-warm-256'
+"colorscheme desert-warm-256
+colorscheme molokai

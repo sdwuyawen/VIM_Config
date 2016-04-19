@@ -1,0 +1,310 @@
+if has("autocmd")
+	  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+set nocompatible  "关闭vi兼容模式，可以启用方向键和Backspace
+set backspace=indent,eol,start	"设置backspace键，否则无法删除
+
+syntax enable
+syntax on         "自动语法高亮(对于编程语言中的关键字高亮需要下载相应的编程语言对应的"配色方案.vim文件"，参见4.C++语言关键字配色 )
+
+
+"set cursorline " 突出显示当前行
+"set ruler " 打开状态栏标尺
+set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
+set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
+set tabstop=4 " 设定 tab 长度为 4
+set nobackup " 覆盖文件时不备份
+
+set number        "显示行号
+
+" 启动自动补全
+filetype plugin on
+filetype plugin indent on
+
+filetype on
+"支持鼠标
+set mouse=a
+
+"允许用shift+#高亮标记单词
+set hlsearch
+
+"vim开启256色支持
+set t_Co=256
+"set background=dark
+"colorscheme solarized
+"let g:solarized_termcolors=256
+
+colorscheme diy1
+"colorscheme ccc1
+"colorscheme wombat256mod1 
+"colorscheme darkburn
+"colorscheme  3dglasses  
+"colorscheme 1111 
+"colorscheme fine_blue  
+"colorscheme wombat  
+"colorscheme corporation  
+"colorscheme  BusyBee  
+
+"手动给C函数体着色
+"map <F10> <Esc>:colorscheme diy1<CR>
+"map <F11> <Esc>:colorscheme ccc1<CR>
+
+
+"设置文本编码支持
+" ******** file encode ********
+"unix or dos file
+set fileformats=unix,dos
+"euc-cn is alias to gb2312
+"set vi inside coding, must be set when you use gbk or utf-8
+set encoding=utf-8
+"actual file encoding, will set as it except fileencodings load other
+"set fileencoding=gb2312
+set fileencodings=utf-bom,utf-8,gbk,gb2312,gb18030,cp936,latin1
+"terminal encoding
+"even if you set utf-8 in ssh client
+set termencoding=utf-8"
+
+""""""""" Settings of taglist""""""""""""""
+" increase the width of the taglist window
+let Tlist_WinWidth=10
+" automatically open the taglist window 
+let Tlist_Auto_Open=0
+" exit wim when only the taglist window exist
+let Tlist_Exit_OnlyWindow=1
+" open tags with single click
+"let Tlist_Use_SingleClick=1
+" close tag folds for inactive buffers
+let Tlist_File_Fold_Auto_Close=1
+" show the fold indicator column in the taglist window 
+let Tlist_Enable_Fold_Column=1
+" Automatically update the taglist to include newly edited files
+let Tlist_Auto_Update=1
+
+""""""""""""""taglist设置"""""""""""""""""           
+map <F4> : Tlist<CR>  ""按下F4就可以呼出了  
+let Tlist_Auto_Open = 1  "在启动VIM后，自动打开taglist窗口  
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'  "设定ctags的位置  
+let Tlist_Use_Right_Window=1 " 1为让窗口显示在右边，0为显示在左边  
+let Tlist_Show_One_File=0
+"让taglist可以同时展示多个文件的函数列表，设置为1时不同时显示>多个文件的tag，只显示当前文件的  
+let Tlist_File_Fold_Auto_Close=1 "同时显示多个文件中的tag时，taglist只显示当前文件tag，>其他文件的函数列表折叠隐藏  
+let Tlist_Exit_OnlyWindow=1 "当taglist是最后一个分割窗口时，自动退出vim  
+"let Tlist_Use_SingleClick= 1    "缺省情况下，在双击一个tag时，才会跳到该tag定义的位置  
+"let Tlist_Process_File_Always=0  "是否一直处理tags.1:处理;0:不处理  
+let Tlist_WinWidth=30
+
+
+"""""""""" NERDtree settings"""""""""""""""
+let NERDTreeWinPos='left'
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+
+"""""""""" mini buffer navigator"""""""""""
+let g:miniBUfExplMapWindowNavVim=1
+let g:miniBufExplMapWindowNavArrows=1
+let g:miniBufExplMapCTabSwitchBufs=1
+let g:miniBufExplModSelTarget=1 
+let g:miniBufExplUseSingleClick=1
+
+"map <F7> <ESC>:bn<CR>   "映射F2显示行号，参考"vim 按键映射"（http://www.pythonclub.org/vim/map-basic）
+"noremap <C-X> <ESC>:bp<CR>   "映射Ctrl+Z切换buf
+noremap <C-Z> <ESC>:bn<CR>   "映射Ctrl+X切换buf
+
+""""""""""""ctags settings"""""""""""""""""
+set tags+=~/.vim/cpptags
+set tags+=~/.vim/systags
+"add by wu, add /usr/include里的tags,用sudo ctags -R --fields=+lS生成的
+set tags+=/usr/include/usr_include_tags
+"add by wu,for cpp library functions
+set tags+=/home/wu/.vim/tags/cpp
+"add by wu,for linux kernel 
+"set tags+=/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/ctags_linux2.6.22
+"add by wu, for OmniComplete, ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+"--c++-kinds=+p  : 为C++文件增加函数原型的标签
+"--fields=+iaS   : 在标签文件中加入继承信息(i)、类成员的访问控制信息(a)、以及函数的指纹(S)
+"--extra=+q      : "为标签增加类修饰符。注意，如果没有此选项，将不能对类成员补全
+set tags+=/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/tags
+
+"""""""""""color scheme""""""""""""""""""""
+let g:molokai_original=1
+
+""""""""""""vundle"""""""""""""""""""""""""
+set nocompatible
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+   
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+""""""""vim scripts""""""""""""""""""
+Bundle 'taglist.vim'
+Bundle 'c.vim'
+Bundle 'minibufexpl.vim'
+Bundle 'grep.vim'
+Bundle 'mru.vim'
+Bundle 'comments.vim'
+
+""""""""git repo"""""""""""""""
+Bundle 'scrooloose/nerdtree'
+"Bundle 'Valloric/YouCompleteMe'
+Bundle 'vim-scripts/AutoClose'
+Bundle 'scrooloose/syntastic'
+Bundle 'Lokaltog/vim-powerline'
+"add by wu, for auto complete
+Bundle 'vim-scripts/OmniCppComplete'
+"add by wu, for achofunc
+Bundle 'vim-scripts/echofunc.vim'	
+Bundle 'wesleyche/SrcExpl'
+
+
+""""""""""syntastic""""""""""""
+let g:syntastic_check_on_open = 1
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+"set error or warning signs
+let g:syntastic_error_symbol = '!'
+let g:syntastic_warning_symbol = '>'
+"whether to show balloons
+let g:syntastic_enable_balloons = 1
+
+"add by wu
+"Syntastic C checker 
+"let g:loaded_syntastic_c_gcc_checker = 1 
+let g:syntastic_c_checkers = ['gcc', 'make']
+let g:syntastic_c_include_dirs = ['/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/include', '/usr/include']
+"let g:syntastic_c_config_file = [''] 
+"let g:syntastic_c_remove_include_errors = 1
+"let g:syntastic_c_compiler = 'gcc'
+"let g:syntastic_c_compiler_options = '-I/home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/include'
+
+
+""""""""""""YCM""""""""""""""""""""
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_seed_identifiers_with_syntax = 1
+"let g:ycm_confirm_extra_conf = 0
+
+
+
+
+""""""""""""OmniCppComplete""""""""""""""""""""
+let OmniCpp_MayCompleteDot = 1   " autocomplete with .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
+" 自动补全配置让Vim补全菜单行为跟IDE一致
+set completeopt=longest,menu
+
+"""""""""""""设置开启ctags"""""""""""""   
+map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+
+
+"""""""""""""""""设置Cscope"""""""""""""""""""""""""""""
+if has("cscope")
+    set csprg=/usr/bin/cscope        " 指定用来执行cscope的命令
+    set csto=0                        " 设置cstag命令查找次序：0先找cscope数据库再找标签文件；1先找标签文件再找cscope数据库
+    set cst                            " 同时搜索cscope数据库和标签文件
+"    set cscopequickfix=s-,c-,d-,i-,t-,e-    " 使用QuickFix窗口来显示cscope查找结果
+    set nocsverb
+    if filereadable("cscope.out")    " 若当前目录下存在cscope数据库，添加该数据库到vim
+        cs add cscope.out
+    elseif $CSCOPE_DB != ""            " 否则只要环境变量CSCOPE_DB不为空，则添加其指定的数据库到vim
+        cs add $CSCOPE_DB
+    endif
+	"cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out		" 添加kernel的cscope
+    set csverb
+endif
+
+"map <F7> <Esc>:cs add /home/wu/workspace/kernel/linux-2.6.22.with_yaffs20070816/cscope.out<CR>		" 添加kernel的cscope
+"map <F8> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+"imap <F8> <ESC>:cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+"map <F9> <ESC>:cs reset<CR>
+
+" 将:cs find c等Cscope查找命令映射为<C-_>c等快捷键（按法是先按Ctrl+Shift+-, 然后很快再按下c）
+nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR> :copen<CR><CR>
+nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR> :copen<CR><CR>
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR> :copen<CR><CR>
+nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR> :copen<CR><CR>
+nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR> :copen<CR><CR>
+nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-_>i :cs find i <C-R>=expand("<cfile>")<CR><CR> :copen<CR><CR>
+
+"""""""""""""""""设置quickfix"""""""""""""""""""""""""""""
+map <F5> <ESC>:copen<CR>		"打开quickfix
+map <F6> <ESC>:cclose<CR>		"关闭quickfix
+
+"""""""""""""设置echofunc"""""""""""""   
+"let g:EchoFuncKeyNext='<C-=>' 
+"let g:EchoFuncKeyPrev='<C-->'
+"在终端下Alt-X等同于Esc X
+"let g:EchoFuncKeyNext='<Esc>+'
+"let g:EchoFuncKeyPrev='<Esc>-'
+let g:EchoFuncKeyNext='<F7>'
+let g:EchoFuncKeyPrev='<F8>'
+
+"显示行号    
+"set number "或者set  nu
+"imap <F2> <Esc>:set nu<CR>   "映射F2显示行号，参考"vim 按键映射"（http://www.pythonclub.org/vim/map-basic）
+"imap <C-F2> <Esc>:set nonu<CR>   "映射Ctrl+F2为不显示行号
+map <F2> <Esc>:set nu!<CR>   "映射F2显示行号，参考"vim 按键映射"（http://www.pythonclub.org/vim/map-basic）
+
+"imap a b
+" mapping
+"如果下拉菜单弹出，回车映射为接受当前所选项目，否则，仍映射为回车；
+inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
+"如果下拉菜单弹出，CTRL-J映射为在下拉菜单中向下翻页。否则映射为CTRL-X CTRL-O；
+inoremap <expr> <C-J>	   pumvisible()?"\<PageDown>\<C-N>\<C-P>":"\<C-X><C-O>"
+"如果下拉菜单弹出，CTRL-K映射为在下拉菜单中向上翻页，否则仍映射为CTRL-K；
+inoremap <expr> <C-K>      pumvisible()?"\<PageUp>\<C-P>\<C-N>":"\<C-K>"
+"如果下拉菜单弹出，CTRL-U映射为CTRL-E，即停止补全，否则，仍映射为CTRL-U；
+inoremap <expr> <C-U>      pumvisible()?"\<C-E>":"\<C-U>" 
+
+
+" // The switch of the Source Explorer 
+"nmap <F8> :SrcExplToggle<CR> 
+
+" // Set the height of Source Explorer window 
+let g:SrcExpl_winHeight = 8
+
+" // Set 100 ms for refreshing the Source Explorer 
+let g:SrcExpl_refreshTime = 100 
+
+" // Set "Enter" key to jump into the exact definition context 
+" let g:SrcExpl_jumpKey = "<ENTER>" 
+
+" // Set "Space" key for back from the definition context 
+let g:SrcExpl_gobackKey = "<SPACE>" 
+
+" // In order to Avoid conflicts, the Source Explorer should know what plugins 
+" // are using buffers. And you need add their bufname into the list below 
+" // according to the command ":buffers!" 
+let g:SrcExpl_pluginList = [ 
+        \ "__Tag_List__", 
+        \ "_NERD_tree_", 
+        \ "Source_Explorer" 
+    \ ] 
+
+" // Enable/Disable the local definition searching, and note that this is not 
+" // guaranteed to work, the Source Explorer doesn't check the syntax for now. 
+" // It only searches for a match with the keyword according to command 'gd' 
+let g:SrcExpl_searchLocalDef = 1 
+
+" // Do not let the Source Explorer update the tags file when opening 
+let g:SrcExpl_isUpdateTags = 0 
+
+" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to 
+" //  create/update a tags file 
+let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
+
+" // Set "<F12>" key for updating the tags file artificially 
+let g:SrcExpl_updateTagsKey = "<F12>" 
+" // Set "<F10>" key for displaying the previous definition in the jump list 
+"let g:SrcExpl_prevDefKey = "<F10>" 
+
+" // Set "<F11>" key for displaying the next definition in the jump list 
+"let g:SrcExpl_nextDefKey = "<F11>" 
