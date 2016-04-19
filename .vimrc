@@ -71,6 +71,12 @@ colorscheme molokai
 "map <F8> <Esc>:colorscheme diy1<CR>
 "map <F11> <Esc>:colorscheme ccc1<CR>
 
+"映射F2显示行号
+map <F2> <Esc>:set nu!<CR>
+
+"""""""""""""设置开启ctags"""""""""""""
+map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+
 """""""""" mini buffer navigator"""""""""""
 let g:miniBUfExplMapWindowNavVim=1
 let g:miniBufExplMapWindowNavArrows=1
